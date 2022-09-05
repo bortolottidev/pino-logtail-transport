@@ -1,0 +1,20 @@
+{
+  "name": "pino-logtail-transport",
+  "version": "0.1.0",
+  "description": "Just another Pino transport.. But for Logtail!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pino",
+    "logtail",
+    "transport",
+    "log"
+  ],
+  "author": "Daniele Bortolotti",
+  "license": "ISC",
+  "dependencies": {
+    "pino-abstract-transport": "^1.0.0"
+  }
+}
