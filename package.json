@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+    "node": ">=16.8.0"
+  },
   "keywords": [
     "pino",
     "logtail",
@@ -17,5 +20,8 @@
   "dependencies": {
     "pino-abstract-transport": "^1.0.0",
     "undici": "^5.10.0"
+  },
+  "devDependencies": {
+    "pino": "^8.5.0"
   }
 }

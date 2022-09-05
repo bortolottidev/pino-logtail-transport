@@ -26,13 +26,13 @@ module.exports = async function (options) {
     process._rawDebug(msg);
   }
 
-  const sendLogsToLogtail = () => {
+  const sendLogsToLogtail = async () => {
     const body = JSON.stringify(batchDataToSend);
     batchDataToSend = [];
 
     debugLog("Sending: " + body);
 
-    return undici.fetch('https://in.logtail.com', {
+    const res = await undici.fetch('https://in.logtail.com', {
       body, 
       method: 'POST', 
       headers: { 
@@ -40,6 +40,8 @@ module.exports = async function (options) {
         ['authorization']: `Bearer ${options.logtailToken}`,
       },
     });
+
+    debugLog("Response: " + res.status)
 
   }
 
@@ -69,6 +71,10 @@ module.exports = async function (options) {
   }
 
   const parseLine = typeof options.parseLine === 'function' ? options.parseLine : defaultParseLine;
+  
+  if(!options.logtailToken) {
+    throw new Error("Missing Logtail Authorization Token!");
+  }
 
   return build(async function (source) {
     for await (let obj of source) {
