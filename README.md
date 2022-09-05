@@ -1,4 +1,5 @@
 # pino-logtail-transport
+
 Just another Pino transport.. But for Logtail!
 
 A [Transport](https://getpino.io/#/docs/transports) to send logs to [Logtail Platform](https://logtail.com/).
@@ -16,41 +17,40 @@ npm i pino-logtail-transport
 Use the transport as destination
 
 ```js
-  const pino = require("pino");
+const pino = require("pino");
 
-  const logtailTransport = pino.transport({
-    target: 'pino-logtail-transport',
-    options: {
-      debug: true,
-      logtailToken: process.env.LOGTAIL_AUTH_TOKEN,
-    },
-  });
-  
-  const logger = pino(logtailTransport);
-  
-  logger.info("Hello, Logtail!");
+const logtailTransport = pino.transport({
+  target: 'pino-logtail-transport',
+  options: {
+    debug: true,
+    logtailToken: process.env.LOGTAIL_AUTH_TOKEN,
+  },
+});
+
+const logger = pino(logtailTransport);
+
+logger.info("Hello, Logtail!");
 ```
 
-### Multistream usage
+### Multistream Usage
 
 Both log on stdout and logtail
 
 ```js
 const pino = require("pino");
 
-
 const stdoutTransport = pino.transport({
   target: 'pino/file',
   options: { destination: 1 },
 });
 
-  const logtailTransport = pino.transport({
-    target: 'pino-logtail-transport',
-    options: {
-      logtailToken: process.env.LOGTAIL_AUTH_TOKEN,
-    },
-  });
-  
+const logtailTransport = pino.transport({
+  target: 'pino-logtail-transport',
+  options: {
+    logtailToken: process.env.LOGTAIL_AUTH_TOKEN,
+  },
+});
+
 const logger = pino({
     level: "info",
   },
@@ -59,9 +59,8 @@ const logger = pino({
     logtailTransport
   ]),
 );
-  
-  logger.info("Hello, Logtail!");;
 
+logger.info("Hello, Logtail!");;
 ```
 
 ## Options

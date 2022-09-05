@@ -1,4 +1,5 @@
-const build = require('pino-abstract-transport')
+const build = require('pino-abstract-transport');
+const undici = require('undici');
 
 function defaultParseLine (line) {
   const obj = JSON.parse(line);
@@ -31,7 +32,7 @@ module.exports = async function (options) {
 
     debugLog("Sending: " + body);
 
-    return fetch('https://in.logtail.com', {
+    return undici.fetch('https://in.logtail.com', {
       body, 
       method: 'POST', 
       headers: { 
